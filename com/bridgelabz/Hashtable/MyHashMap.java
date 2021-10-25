@@ -1,9 +1,5 @@
 package com.bridgelabz.Hashtable;
 import java.util.ArrayList;
-
-/**
- * Purpose - To create methods for Hash table features.
- */
 public class MyHashMap <K, V> {
     MyMapNode<K, V> head;
     MyMapNode<K, V> tail;
@@ -90,6 +86,26 @@ public class MyHashMap <K, V> {
             this.tail.setNext(myNode);
             this.tail = myNode;
         }
+    }
+
+    /**
+     * Purpose : Method to remove a word
+     * @param key : word to be removed
+     */
+    public void remove(K key) {
+        MyMapNode<K, V> currentNode = head;
+        MyMapNode<K, V> previousNode = null;
+        while (currentNode != null && currentNode.getKey().equals(key)) {
+            head = currentNode.getNext();
+        }
+        while (currentNode != null && !(currentNode.getKey().equals(key))) {
+            previousNode = currentNode;
+            currentNode = currentNode.getNext();
+        }
+        if (currentNode != null)
+            previousNode.next = currentNode.next;
+        if (currentNode == null)
+            System.out.println("Word not found");
     }
 
     @Override
